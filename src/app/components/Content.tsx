@@ -19,10 +19,10 @@ export default function Content() {
                         <EducationSection/>
                         <ExpSection/>
                     </> :
-                    <>
+                    <div className="flex justify-center m-8">
                         <label htmlFor="favcolor">Accent color :</label>
                         <input type="color" id="favcolor" name="favcolor" value={accentColor} onChange={(e) => setAccentColor(e.target.value)}/>
-                    </>
+                    </div>
             }
         </>
     )
