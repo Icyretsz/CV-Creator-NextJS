@@ -12,7 +12,7 @@ export const AccentColorContext = createContext<AccentColorContextType | undefin
 
 const AccentColorProvider: React.FC<{ children : ReactNode }> = ({ children }) => {
     const [accentColor, setAccentColor] = useState<string>('#FF5733')
-    const textColor = getContrastYIQ (accentColor)
+    const textColor: string = getContrastYIQ (accentColor)
     const darkenColor : string = darkenHexColor(accentColor)
 
     return (
@@ -30,21 +30,21 @@ const useAccentColor = () => {
     return context;
 }
 
-const getContrastYIQ = (hexcolor: string) => {
+const getContrastYIQ = (hexcolor: string):string => {
     hexcolor = hexcolor.replace('#', '');
-    const r = parseInt(hexcolor.substr(0, 2), 16);
-    const g = parseInt(hexcolor.substr(2, 2), 16);
-    const b = parseInt(hexcolor.substr(4, 2), 16);
-    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    const r:number = parseInt(hexcolor.substr(0, 2), 16);
+    const g:number = parseInt(hexcolor.substr(2, 2), 16);
+    const b:number = parseInt(hexcolor.substr(4, 2), 16);
+    const yiq:number = (r * 299 + g * 587 + b * 114) / 1000;
     return yiq >= 128 ? 'black' : 'white';
 };
 
-const darkenHexColor = (hex : string) => {
+const darkenHexColor = (hex : string):string => {
     // Convert hex to RGB
-    let percent = 20;
-    let r = parseInt(hex.slice(1, 3), 16);
-    let g = parseInt(hex.slice(3, 5), 16);
-    let b = parseInt(hex.slice(5, 7), 16);
+    let percent:number= 20;
+    let r:number = parseInt(hex.slice(1, 3), 16);
+    let g:number = parseInt(hex.slice(3, 5), 16);
+    let b:number = parseInt(hex.slice(5, 7), 16);
 
     // Calculate the adjustment factor
     let factor = (100 - percent) / 100;
@@ -55,11 +55,11 @@ const darkenHexColor = (hex : string) => {
     b = Math.round(b * factor);
 
     // Convert RGB back to hex
-    r = r.toString(16).padStart(2, '0');
-    g = g.toString(16).padStart(2, '0');
-    b = b.toString(16).padStart(2, '0');
+    let rStr:string = r.toString(16).padStart(2, '0');
+    let gStr:string = g.toString(16).padStart(2, '0');
+    let bStr:string = b.toString(16).padStart(2, '0');
 
-    return `#${r}${g}${b}`;
+    return `#${rStr}${gStr}${bStr}`;
 }
 
 export { AccentColorProvider, useAccentColor };
