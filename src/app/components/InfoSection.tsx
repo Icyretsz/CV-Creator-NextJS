@@ -97,7 +97,7 @@ return (
                         </div>
 
                 )}
-                { notify ? <p className="m-2">Changes made, click "Save changes" to save</p> : ""}
+                { notify ? <p className="m-2 text-xs text-center">Changes made, click "Save changes" to save</p> : ""}
                 <button className="py-2 px-4 rounded my-2"
                         style={{backgroundColor: accentColor, color: textColor}}>Save changes</button>
             </form>
